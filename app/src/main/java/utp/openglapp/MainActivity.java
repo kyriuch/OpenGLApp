@@ -12,6 +12,7 @@ import android.widget.ListView;
 import java.util.Arrays;
 import java.util.List;
 
+import utp.openglapp.square.SquareActivity;
 import utp.openglapp.triangle.TriangleActivity;
 
 
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         ListView listView = (ListView) findViewById(R.id.listView);
 
-        List<String> menus = Arrays.asList("Tęczowy trójkąt", "Wirujący trójkąt", "Trzecie menu", "Czwarte menu", "Piąte menu", "Szóste menu", "Siódme menu");
+        List<String> menus = Arrays.asList("Tęczowy trójkąt", "Kwadratowy trójkąt", "Trzecie menu", "Czwarte menu", "Piąte menu", "Szóste menu", "Siódme menu");
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.listview_item, menus);
 
@@ -53,7 +54,8 @@ public class MainActivity extends AppCompatActivity {
                 new Clickable() {
                     @Override
                     public void click() {
-
+                        Intent intent = new Intent(context, SquareActivity.class);
+                        startActivity(intent);
                     }
                 },
                 new Clickable() {

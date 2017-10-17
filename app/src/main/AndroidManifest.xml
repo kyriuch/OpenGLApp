@@ -21,6 +21,9 @@
         <activity android:name=".triangle.TriangleActivity" android:label="@string/app_name">
 
         </activity>
+        <activity android:name=".square.SquareActivity" android:label="@string/app_name">
+
+        </activity>
     </application>
 
 </manifest>
