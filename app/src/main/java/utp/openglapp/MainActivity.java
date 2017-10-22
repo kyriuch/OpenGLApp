@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import utp.openglapp.square.SquareActivity;
+import utp.openglapp.texturedsquare.square.TexturedSquareActivity;
 import utp.openglapp.triangle.TriangleActivity;
 
 
@@ -61,7 +62,8 @@ public class MainActivity extends AppCompatActivity {
                 new Clickable() {
                     @Override
                     public void click() {
-
+                        Intent intent = new Intent(context, TexturedSquareActivity.class);
+                        startActivity(intent);
                     }
                 },
                 new Clickable() {

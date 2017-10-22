@@ -10,13 +10,15 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
+import utp.openglapp.R;
+
 
 public class TexturedSquare {
     private static float vertices[] = {
-            -0.5f, 0.5f, 0f, 1f, // top left
-            -0.5f, -0.5f, 0f, 1f, // bottom left
-            0.5f, 0.5f, 0f, 1f, // top right
-            0.5f, -0.5f, 0f, 1f // bottom right
+            -1.0f, 0.0f, 0f, 1f, // top left
+            -1.0f, -1.0f, 0f, 1f, // bottom left
+            1.0f, 0.0f, 0f, 1f, // top right
+            1.0f, -1.0f, 0f, 1f // bottom right
     };
 
     private static float verticesColors[] = {
@@ -42,7 +44,7 @@ public class TexturedSquare {
                     "void main() {" +
                     "   gl_Position = position;" +
                     "   Color = color;" +
-                    "   TextCoordinate = position" +
+                    "   TextCoordinate = position;" +
                     "}";
 
 
@@ -79,6 +81,8 @@ public class TexturedSquare {
         GLES20.glAttachShader(program, vertexShader);
         GLES20.glAttachShader(program, fragmentShader);
 
+        textureDataHandle = loadTexture(context, R.drawable.kitty);
+
         GLES20.glLinkProgram(program);
 
     }
@@ -97,6 +101,13 @@ public class TexturedSquare {
         GLES20.glEnableVertexAttribArray(color);
 
         GLES20.glVertexAttribPointer(color, 3, GLES20.GL_FLOAT, false, 4 * 4, verticesColorBuffer);
+
+        int texture = GLES20.glGetUniformLocation(program, "texture");
+
+        GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
+        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textureDataHandle);
+
+        GLES20.glUniform1i(texture, 0);
 
         GLES20.glDrawElements(GLES20.GL_TRIANGLES, drawOrder.length, GLES20.GL_UNSIGNED_BYTE, drawOrderBuffer);
 
